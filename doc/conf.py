@@ -15,6 +15,9 @@
 import sys
 import os
 
+
+from sphinx.ext.autodoc import cut_lines
+
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
@@ -34,6 +37,10 @@ extensions = [
     'sphinx.ext.viewcode',
     'doc.signature_override'
 ]
+
+
+def setup(app):
+  app.connect('autodoc-process-docstring', cut_lines(3, what=['module']))
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
