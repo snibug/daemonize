@@ -3,8 +3,8 @@ python:
     - "2.6"
     - "2.7"
     - "3.3"
-install: pip install .
-script: nosetests
+install: pip install .; pip install sphinx
+script: nosetests; cd doc; make html
 notifications:
     webhooks:
         - http://moriarty.thesharp.org:5000/travis/2c27baee8754c01522cf751c1ed393b1/
