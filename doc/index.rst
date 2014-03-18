@@ -6,11 +6,6 @@
 Welcome to daemonize's documentation!
 =====================================
 
-Contents:
-
-.. toctree::
-   :maxdepth: 2
-
 .. automodule:: daemonize
 
    .. autoclass:: Daemonize
