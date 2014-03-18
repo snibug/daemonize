@@ -13,17 +13,17 @@ from logging import handlers
 
 
 class Daemonize(object):
-    """ Daemonize object
-    Object constructor expects three arguments:
-    - app: contains the application name which will be sent to syslog.
-    - pid: path to the pidfile.
-    - action: your custom function which will be executed after daemonization.
-    - keep_fds: optional list of fds which should not be closed.
-    - privileged_action: action that will be executed before drop privileges if user or
-                         group parameter is provided.
-    - user: drop privileges to this user if provided.
-    - group: drop privileges to this group if provided.
-    - verbose: send debug messages to logger if provided.
+    """Daemonize object.
+
+    :param str app: contains the application name which will be sent to syslog.
+    :param str pid: path to the pidfile.
+    :param function action: your custom function which will be executed after daemonization.
+    :param bool keep_fds: optional list of fds which should not be closed.
+    :param function privileged_action: action that will be executed before drop privileges
+                                       if user or group parameter is provided.
+    :param str user: drop privileges to this user if provided.
+    :param str group: drop privileges to this group if provided.
+    :param bool verbose: send debug messages to logger if provided.
     """
     def __init__(self, app, pid, action, keep_fds=None, privileged_action=None, user=None, group=None, verbose=False):
         self.app = app
