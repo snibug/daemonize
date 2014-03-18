@@ -5,19 +5,18 @@
 
     Module documentation placeholder!
 
-    Possible errors:
-        - ``Group $group not found.`` — Invalid `group` parameter.
+    Possible errors
+    ---------------
 
-        - ``Unable to change gid.`` — Insufficient rights, try to run your daemon as superuser.
+    Errors documentation placeholder
 
-        - ``User $user not found.`` — Invalid `user` parameter.
-
-        - ``Unable to change uid.`` — Insufficient rights, try to run your daemon as superuser.
-
-        - ``Unable to create a pidfile.`` — Insufficient rights or pidfile directory
-          doesn't exists, try to run your daemon as superuser or create directory.
-
-        - ``Unable to lock on the pidfile.`` — Another daemon instance already running.
+    - ``Group $group not found.`` — Invalid `group` parameter.
+    - ``Unable to change gid.`` — Insufficient rights, try to run your daemon as superuser.
+    - ``User $user not found.`` — Invalid `user` parameter.
+    - ``Unable to change uid.`` — Insufficient rights, try to run your daemon as superuser.
+    - ``Unable to create a pidfile.`` — Insufficient rights or pidfile directory
+      doesn't exists, try to run your daemon as superuser or create directory.
+    - ``Unable to lock on the pidfile.`` — Another daemon instance already running.
 
 """
 

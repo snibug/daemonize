@@ -8,6 +8,9 @@ Welcome to daemonize's documentation!
 
 .. automodule:: daemonize
 
+   API reference
+   -------------
+
    .. autoclass:: Daemonize
 
      .. automethod:: start
