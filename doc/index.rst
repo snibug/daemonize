@@ -12,7 +12,10 @@ Contents:
    :maxdepth: 2
 
 .. automodule:: daemonize
-   :members:
+
+   .. autoclass:: Daemonize
+
+     .. automethod:: start
 
 Indices and tables
 ==================
