@@ -18,7 +18,7 @@ class Daemonize(object):
     :param str app: contains the application name which will be sent to syslog.
     :param str pid: path to the pidfile.
     :param function action: your custom function which will be executed after daemonization.
-    :param bool keep_fds: optional list of fds which should not be closed.
+    :param list[int] keep_fds: optional list of fds which should not be closed.
     :param function privileged_action: action that will be executed before drop privileges
                                        if user or group parameter is provided.
     :param str user: drop privileges to this user if provided.
