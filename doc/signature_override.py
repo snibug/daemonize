@@ -7,8 +7,6 @@
         (foo, bar, baz="spam", *args, **kwargs) => (foo, bar[, baz="spam"[, *args[, **kwargs]]])
 """
 
-from sphinx.ext.autodoc import py_ext_sig_re
-
 
 def process_signatures(app, what, name, obj, options, signature, return_annotation):
     if what not in ["function", "method", "class"]:
