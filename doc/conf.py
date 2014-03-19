@@ -17,7 +17,6 @@ import os
 
 from sphinx.ext.autodoc import cut_lines
 
-sys.path.append(".")
 sys.path.append("..")
 
 from daemonize import VERSION
