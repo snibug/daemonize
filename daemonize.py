@@ -31,6 +31,8 @@ import logging
 import atexit
 from logging import handlers
 
+VERSION="2.2.3"
+
 
 class Daemonize(object):
     """Daemonize object.

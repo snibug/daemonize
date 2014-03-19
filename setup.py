@@ -2,9 +2,11 @@
 
 from setuptools import setup, find_packages
 
+from daemonize import VERSION
+
 setup(
     name="daemonize",
-    version="2.2.3",
+    version=VERSION,
     py_modules=["daemonize"],
     author="Ilya Otyutskiy",
     author_email="ilya.otyutskiy@icloud.com",
