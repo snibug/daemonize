@@ -63,7 +63,7 @@ class Daemonize(object):
 
   def start(self):
     """ start method
-    Main daemonization process.
+    Main daemonization process. do the unix double-fork magic
     """
     # If pidfile already exists, we should read pid from there; to overwrite
     # it, if locking
@@ -90,7 +90,16 @@ class Daemonize(object):
         pidfile.write(old_pid)
       sys.exit(1)
 
-    # Fork, creating a new process for the child.
+    # do first Fork, creating a new process for the child.
+    process_id = os.fork()
+    if process_id < 0:
+      # Fork error. Exit badly.
+      sys.exit(1)
+    elif process_id != 0:
+      # This is the parent process. Exit.
+      sys.exit(0)
+
+    # do second Fork
     process_id = os.fork()
     if process_id < 0:
       # Fork error. Exit badly.
