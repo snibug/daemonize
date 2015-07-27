@@ -1,15 +1,18 @@
 # #!/usr/bin/python
 
+from logging import handlers
+from signal import SIGTERM
+
+import atexit
 import fcntl
+import grp
+import logging
 import os
 import pwd
-import grp
-import sys
-import signal
 import resource
-import logging
-import atexit
-from logging import handlers
+import signal
+import sys
+import time
 
 
 class Daemonize(object):
@@ -31,10 +34,10 @@ class Daemonize(object):
   - verbose: send debug messages to logger if provided.
   - logger: use this logger object instead of creating new one, if provided.
   """
-  def __init__(self, app, pid, action, keep_fds=None, auto_close_fds=True,
-               privileged_action=None, user=None, group=None, verbose=False,
-               logger=None):
-    self.app = app
+  def __init__(self, pid, app=None, action=None, keep_fds=None,
+               auto_close_fds=True, privileged_action=None, user=None,
+               group=None, verbose=False, logger=None):
+    self.app = app or 'daemonize'
     self.pid = pid
     self.action = action
     self.keep_fds = keep_fds or []
@@ -227,3 +230,29 @@ class Daemonize(object):
     self.logger.warn("Starting daemon.")
 
     self.action(*privileged_action_result)
+
+  def stop(self):
+    """stop a daemon"""
+    try:
+      with file(self.pid, 'r') as pid_file:
+        pid = int(pid_file.read().strip())
+    except IOError:
+      pid = None
+
+    if pid is None:
+      logging.error('process id file {path} dose not exist. '
+                    'daemon not running?'.format(path=self.pid))
+      return
+
+    try:
+      while True:
+        gid = os.getpgid(pid)
+        os.killpg(pid, SIGTERM)
+        time.sleep(0.1)
+    except OSError as error:
+      if str(error).find('No such process') > 0:
+        if os.path.exists(self.pid):
+          os.remove(self.pid)
+      else:
+        logging.error(str(error))
+        sys.exit(1)
